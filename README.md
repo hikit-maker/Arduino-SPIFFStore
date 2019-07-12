@@ -1,5 +1,7 @@
 # Arduino-SPIFFStore
-Helper library to store integers into SPIFFS as documents
+Helper library to store integers into SPIFFS as documents.
+
+NOTE: you have to **enable** SPIFFS under `Tools > Flash Size > **(**K SPIFFS)`
 
 
 ## Example code
