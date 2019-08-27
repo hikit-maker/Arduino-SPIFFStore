@@ -8,8 +8,10 @@
 class StoreClass {
     public:
         void begin(fs::FS &spiffs);
-        bool saveInt(String key, int value);
+        bool save(String key, int value);
+        bool save(String key, String value);
         int getInt(String key);
+        String getString(String key);
 
     private:
         fs::File fileReader(String path);

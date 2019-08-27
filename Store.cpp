@@ -12,7 +12,20 @@ void StoreClass::begin(FS &spiffs)
     this->_initialized = true;
 }
 
-bool StoreClass::saveInt(String key, int value)
+bool StoreClass::save(String key, int value)
+{
+    fs::File document = this->fileWriter(key);
+    if ( !document )
+    {
+        return false;
+    }
+    
+    document.println(value);
+    document.close();
+    return true;
+}
+
+bool StoreClass::save(String key, String value)
 {
     fs::File document = this->fileWriter(key);
     if ( !document )
@@ -35,6 +48,17 @@ int StoreClass::getInt(String key)
 
     String rawInt = document.readStringUntil('\n');
     return rawInt.toInt();
+}
+
+String StoreClass::getString(String key)
+{
+    fs:File document = this->fileReader(key);
+    if ( !document )
+    {
+        return "";
+    }
+
+    return document.readStringUntil('\n');
 }
 
 fs::File StoreClass::fileWriter(String path)
